@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:inventory_crud_application/views/pages/landing_screen.dart';
+import 'package:inventory_crud_application/views/pages/log_in_screen.dart';
 import 'package:inventory_crud_application/views/pages/splash_screen.dart';
 import 'di_container.dart' as di;
 
@@ -35,8 +37,9 @@ class MyApp extends StatelessWidget {
               ),
               initialRoute: SplashScreen.routeName,
               getPages: [
-                GetPage(
-                    name: SplashScreen.routeName, page: () => SplashScreen()),
+                GetPage(name: SplashScreen.routeName, page: () => SplashScreen()),
+                GetPage(name: LogInScreen.routeName, page: () => LogInScreen()),
+                GetPage(name: LandingScreen.routeName, page: () => LogInScreen()),
               ],
             ));
   }
