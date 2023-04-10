@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_crud_application/views/widgets/app_customtext_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName="/splashScreen";
@@ -12,8 +13,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Splash"),
+      body: Center(
+        child:AppCustomText(text: "Inventory Management" ,),
       ),
     );
   }
