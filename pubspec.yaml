@@ -39,6 +39,9 @@ dependencies:
   get_it:
   get:
   image_picker:
+  shared_preferences:
+  dio:
+
 
 
 
