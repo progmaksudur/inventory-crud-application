@@ -7,10 +7,11 @@ class AppCustomText extends StatelessWidget {
   TextStyle? textStyle;
   TextAlign? textAlign;
   int? maxLine;
+
   AppCustomText({this.text,this.maxLine,this.textAlign,this.textStyle,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(text??"",style:GoogleFonts.poppins(textStyle: textStyle??AppConstTextStyle.normalText),textAlign:textAlign??TextAlign.start,maxLines: maxLine ?? null,);
+    return Text(text??"",style:GoogleFonts.kanit(textStyle: textStyle??AppConstTextStyle.normalText14),textAlign:textAlign??TextAlign.start,maxLines: maxLine ?? null,);
   }
 }
