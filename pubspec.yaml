@@ -40,6 +40,7 @@ dependencies:
   get: ^4.6.5
   image_picker:
   shared_preferences:
+  cached_network_image: ^3.2.2
   dio: ^4.0.6
   google_fonts:
   flutter_screenutil:
