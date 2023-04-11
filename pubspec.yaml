@@ -42,7 +42,10 @@ dependencies:
   shared_preferences:
   dio:
   google_fonts:
+  hive: ^2.2.3
+  hive_flutter:
   flutter_screenutil:
+  path_provider:
 
 
 

@@ -4,6 +4,7 @@ class ApiHelperUrlStrings{
   static const String baseUrl="https://secure-falls-43052.herokuapp.com/";
   static const String token = 'token';
   static const String user = 'user';
+  static const String pass = 'pass';
 
   ////Authentication
   static const String login = 'api/authenticate';

@@ -28,6 +28,15 @@ class _LogInScreenState extends State<LogInScreen> {
   final passwordController = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final controller=Get.find<AppAuthController>();
+    userNameController.text=controller.getUserName();
+    passwordController.text=controller.getUserPass();
+  }
+
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
@@ -139,6 +148,11 @@ class _LogInScreenState extends State<LogInScreen> {
       UserModel model = UserModel(username: userName, password: password, rememberMe: remember);
        final logIn=await authController.login(model, context);
        if(logIn==true){
+         if(remember==true){
+           authController.saveUserNamePass(userName, password);
+         }else{
+           authController.removeUserPass();
+         }
          userNameController.clear();
          passwordController.clear();
          final appHelperController=Get.find<AppWidgetHelperController>();

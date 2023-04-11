@@ -5,15 +5,18 @@ import 'package:inventory_crud_application/domain/models/base_model/api_response
 import 'package:inventory_crud_application/domain/models/response_model/add_product_model.dart';
 import 'package:inventory_crud_application/domain/models/response_model/product_list_model.dart';
 import 'package:inventory_crud_application/domain/models/response_model/user_profile_data.dart';
+import 'package:inventory_crud_application/repositories/local/local_hive_repository.dart';
 import 'package:inventory_crud_application/repositories/remote/product_repo.dart';
 import 'package:inventory_crud_application/repositories/remote/profile_repo.dart';
 
 class AppLandingPageController extends GetxController{
   final ProfileRepository profileRepository;
+  final LocalProductRepository localProductRepository;
   final ProductRepository productRepository;
 
 
-  AppLandingPageController({required this.profileRepository,required this.productRepository});
+
+  AppLandingPageController({required this.profileRepository,required this.productRepository,required this.localProductRepository});
 
   bool _profileLoading=false;
   bool get profileLoading=>_profileLoading;
@@ -63,16 +66,31 @@ class AppLandingPageController extends GetxController{
         final data = apiResponse.response!.data;
         sampleList=data;
         print("---------------->$sampleList");
-        _productList  = sampleList.map((json) => ProductListModel.fromJson(json)).toList();
-
+        addProductInLocal(sampleList.map((json) => ProductListModel.fromJson(json)).toList());
         print("++++++++++>${productList.length}");
         update();
       } else {
         _productLoading=false;
+        firstTimeDataLoadFromLocal();
         update();
         print(apiResponse.response!.statusCode);
       }
   }
+
+   addProductInLocal(List<ProductListModel> products)async{
+    localProductRepository.saveProducts(products);
+    final data= await localProductRepository.getProducts();
+    _productList=data;
+    update();
+  }
+
+  firstTimeDataLoadFromLocal()async{
+    final data= await localProductRepository.getProducts();
+    print(data.length);
+    _productList=data;
+    update();
+  }
+
   Future<bool> addProduct(AddProductModel model,BuildContext context) async {
     _addProductLoading=true;
     update();

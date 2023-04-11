@@ -7,6 +7,7 @@ import 'package:inventory_crud_application/controller/app_landing_page_controlle
 import 'package:inventory_crud_application/controller/app_widget_helper_controller.dart';
 import 'package:inventory_crud_application/domain/services/dio/dio_client.dart';
 import 'package:inventory_crud_application/domain/services/dio/logging_interceptor.dart';
+import 'package:inventory_crud_application/repositories/local/local_hive_repository.dart';
 import 'package:inventory_crud_application/repositories/remote/auth_repo.dart';
 import 'package:inventory_crud_application/repositories/remote/product_repo.dart';
 import 'package:inventory_crud_application/repositories/remote/profile_repo.dart';
@@ -22,7 +23,7 @@ Future<void> init() async {
   //Controller using Factory
     sl.registerFactory(()=> AppWidgetHelperController());
     sl.registerFactory(()=> AppAuthController(authRepository: sl()));
-    sl.registerFactory(()=> AppLandingPageController(profileRepository: sl(),productRepository: sl()));
+    sl.registerFactory(()=> AppLandingPageController(profileRepository: sl(),productRepository: sl(),localProductRepository: sl()));
 
 
 
@@ -33,6 +34,7 @@ Future<void> init() async {
     sl.registerLazySingleton(() => AuthRepository (dioClient: sl(), sharedPreferences: sl()));
     sl.registerLazySingleton(() => ProfileRepository(dioClient: sl(), sharedPreferences: sl()));
     sl.registerLazySingleton(() => ProductRepository(dioClient: sl(), sharedPreferences: sl()));
+    sl.registerLazySingleton(() => LocalProductRepository());
 
 
 

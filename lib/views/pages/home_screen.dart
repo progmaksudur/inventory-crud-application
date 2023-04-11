@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:inventory_crud_application/controller/app_landing_page_controller.dart';
 import 'package:inventory_crud_application/views/pages/product_details_screen.dart';
@@ -46,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     barCode: model.barcode,
                     brandName: model.brand?.name??"Not Found",
                     price: model.productPrice?.price.toString()??"Not Found",
-
                     onDelete: () {
                       controller.deleteProduct(context, model.id.toString());
                     },

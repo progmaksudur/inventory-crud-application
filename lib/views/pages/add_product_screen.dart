@@ -68,11 +68,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
           Align(alignment: Alignment.centerRight,child: UnconstrainedBox(child: AppCustomButton(height: 60.h,width: 200.w,title: "Pick Product Image",icon: Icons.photo,iconColor: AppColor.primaryColor,
             onPressed: _getImage,))),
           AppCustomSizeBox(height: 15.h,),
-          Align(alignment: Alignment.center,child: UnconstrainedBox(child: AppCustomButton(height: 50.h,width: 130.w,title: "Add Product",
+          Align(alignment: Alignment.center,child: UnconstrainedBox(child:controller.addProductLoading==false? AppCustomButton(height: 50.h,width: 130.w,title: "Add Product",
             onPressed:(){
               addProduct(context,controller);
 
-            },))),
+            },):const Center(child: CircularProgressIndicator(),))),
 
 
         ],

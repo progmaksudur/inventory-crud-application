@@ -63,6 +63,31 @@ class AppAuthController extends GetxController{
 
   }
 
+  void saveUserNamePass(String user ,String pass){
+    authRepository.saveUserNamePass(user, pass);
+    update();
+  }
+  String getUserName() {
+    return authRepository.getUserName();
+  }
+  String getUserPass() {
+    return authRepository.getUserPass();
+  }
+
+  Future<bool> removeUserPass() async{
+    print(authRepository.removeRememberPass());
+    print(authRepository.removeRememberUser());
+    final userRemove=await authRepository.removeRememberUser();
+    final passRemove=await authRepository.removeRememberPass();
+    update();
+    if(userRemove==true && passRemove==true){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   Future<bool> removeUserToken() async{
     print(authRepository.removeUserToken());
     final tokenRemove=await authRepository.removeUserToken();

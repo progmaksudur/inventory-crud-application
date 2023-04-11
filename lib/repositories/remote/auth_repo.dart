@@ -41,6 +41,35 @@ class AuthRepository {
     }
   }
 
+  Future<void> saveUserNamePass(String user,String pass) async {
+    try {
+      await sharedPreferences.setString(ApiHelperUrlStrings.user, user);
+      await sharedPreferences.setString(ApiHelperUrlStrings.pass, pass);
+      print("========>Save User and Password<=======");
+      print(await sharedPreferences.getString(ApiHelperUrlStrings.user));
+      print(await sharedPreferences.getString(ApiHelperUrlStrings.pass));
+    } catch (e) {
+      throw e;
+    }
+  }
+  getUserName() {
+    SharedPreferences.getInstance();
+    return sharedPreferences.getString(ApiHelperUrlStrings.user) ?? "";
+  }
+  getUserPass() {
+    SharedPreferences.getInstance();
+    return sharedPreferences.getString(ApiHelperUrlStrings.pass) ?? "";
+  }
+  //remove user name in local storage
+  removeRememberUser() async{
+    await SharedPreferences.getInstance();
+    return sharedPreferences.remove(ApiHelperUrlStrings.user);
+  }
+  //remove user pass in local storage
+  removeRememberPass() async{
+    await SharedPreferences.getInstance();
+    return sharedPreferences.remove(ApiHelperUrlStrings.pass);
+  }
   //save user token in local storage
   getUserToken() {
     SharedPreferences.getInstance();
