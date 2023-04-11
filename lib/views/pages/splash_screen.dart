@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:inventory_crud_application/const/app_color_const.dart';
 import 'package:inventory_crud_application/const/app_helperstring_const.dart';
 import 'package:inventory_crud_application/const/app_textstyles_const.dart';
+import 'package:inventory_crud_application/controller/app_authentication_controller.dart';
 import 'package:inventory_crud_application/views/pages/landing_screen.dart';
 import 'package:inventory_crud_application/views/pages/log_in_screen.dart';
 import 'package:inventory_crud_application/views/widgets/app_custom_sizebox.dart';
@@ -29,15 +30,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   }
   load()async{
-    Timer(const Duration(seconds: 2), () {
-
-      Get.toNamed(LogInScreen.routeName);
-      // if (token.isEmpty) {
-      //   Navigator.pushReplacementNamed(context, SignInPage.routeName);
-      // } else {
-      //   provider.saveToken(token);
-      //   Navigator.of(context).pushReplacementNamed(LandingPage.routeName);
-      // }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final controller=Get.find<AppAuthController>();
+      final token = controller.getAuthToken();
+      print(token);
+      Timer(Duration(seconds: 4), () {
+        if (token.isEmpty) {
+          Get.toNamed(LogInScreen.routeName);
+        } else {
+          controller.saveToken(token);
+          Get.toNamed(LandingScreen.routeName);
+        }
+      });
     });
   }
 
