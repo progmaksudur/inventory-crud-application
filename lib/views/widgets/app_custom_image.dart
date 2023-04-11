@@ -26,8 +26,14 @@ class AppCustomImage extends StatelessWidget {
         );
       },
       errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-        return imageUrl.isNotEmpty?Image.file(File(imageUrl)):Icon(Icons.error,size: 25.sp,);
+
+        return doesFileExist(imageUrl)==true?Image.file(File(imageUrl)):Icon(Icons.error,size: 25.sp,);
       },
     );
+  }
+  //Using For Check file
+  bool doesFileExist(String imageUrl) {
+    File file = File(imageUrl);
+    return file.existsSync();
   }
 }

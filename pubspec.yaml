@@ -38,10 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   get_it:
   get: ^4.6.5
-  image_picker:
+  image_picker: ^0.8.6
   shared_preferences:
-  cached_network_image: ^3.2.2
-  dio: ^4.0.6
+  dio:
   google_fonts:
   flutter_screenutil:
 

@@ -53,11 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     alignment: Alignment.centerRight,
                     child: AppCustomButton(height: 40.h,width: 120.w,title: "Log Out",onPressed: ()async{
                       final controller =Get.find<AppAuthController>();
-                      final aHController =Get.find<AppWidgetHelperController>();
                       final remove=await controller.removeUserToken();
                       if(remove==true){
                         controller.clearState();
-                        aHController.changeIndex(0);
                         Get.toNamed(LogInScreen.routeName);
                         Get.until((route) => route.settings.name == LogInScreen.routeName);
                       }

@@ -55,6 +55,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     width: 260.w,
                     child: AppCustomTextFormField(
                       controller: userNameController,
+                      hint: "User Name",
                     ))),
             AppCustomSizeBox(),
             UnconstrainedBox(
@@ -64,6 +65,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         valueListenable: visibility,
                         builder: (context, value, _) => AppCustomTextFormField(
                               controller: passwordController,
+                              hint: "Password",
                               obscureText: value,
                               suffixIcon: value == true
                                   ? Icons.visibility
