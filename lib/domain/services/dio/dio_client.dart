@@ -28,6 +28,7 @@ class DioClient{
     ..httpClientAdapter
     ..options.headers = {
       'Content-Type': 'application/json',
+      "Accept": "application/json",
       'Authorization': 'Bearer $token',
       //AppConstants.LANG_KEY : countryCode == 'US'? 'en':countryCode.toLowerCase(),
     };
