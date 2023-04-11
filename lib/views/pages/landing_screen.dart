@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_crud_application/const/app_textstyles_const.dart';
+import 'package:inventory_crud_application/controller/app_landing_page_controller.dart';
 import 'package:inventory_crud_application/controller/app_widget_helper_controller.dart';
 import 'package:inventory_crud_application/views/widgets/app_custom_floating_action_bar.dart';
 import 'package:inventory_crud_application/views/widgets/app_custom_navigation_bar.dart';
@@ -18,6 +19,7 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AppWidgetHelperController>(
