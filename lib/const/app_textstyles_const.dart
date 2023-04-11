@@ -8,6 +8,10 @@ class AppConstTextStyle{
 
   static TextStyle normalText14 = TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: AppColor.primaryTextColor);
   static TextStyle normalText18 = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400, color: AppColor.primaryTextColor);
+  static TextStyle normalText12 = TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400, color: AppColor.primaryTextColor,overflow: TextOverflow.ellipsis);
+  static TextStyle normalText10 = TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.deepPurple);
+  static TextStyle normalText14w500 = TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: AppColor.primaryColor);
+  static TextStyle normalText16w500 = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500, color: AppColor.primaryColor);
   static TextStyle appbarTextStyle = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, color: AppColor.appbarTitleColor);
 
 

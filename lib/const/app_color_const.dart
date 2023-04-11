@@ -21,7 +21,7 @@ class AppColor{
 
 
 
-  static const Color hintTextColor=Color(0xFFE5E4E2);
+  static const Color hintTextColor=Colors.blueGrey;
 
 
 

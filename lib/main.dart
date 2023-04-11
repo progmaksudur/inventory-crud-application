@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:inventory_crud_application/controller/app_authentication_controller.dart';
+import 'package:inventory_crud_application/controller/app_landing_page_controller.dart';
 import 'package:inventory_crud_application/controller/app_widget_helper_controller.dart';
 import 'package:inventory_crud_application/views/pages/landing_screen.dart';
 import 'package:inventory_crud_application/views/pages/log_in_screen.dart';
@@ -14,7 +16,10 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   runApp(const MyApp());
-  Get.put(AppWidgetHelperController());
+  Get.put(di.sl<AppWidgetHelperController>());
+  Get.put(di.sl<AppAuthController>());
+  Get.put(di.sl<AppLandingPageController>());
+
 
 }
 
