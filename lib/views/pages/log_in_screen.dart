@@ -5,6 +5,7 @@ import 'package:inventory_crud_application/const/app_color_const.dart';
 import 'package:inventory_crud_application/const/app_helperstring_const.dart';
 import 'package:inventory_crud_application/const/app_textstyles_const.dart';
 import 'package:inventory_crud_application/controller/app_authentication_controller.dart';
+import 'package:inventory_crud_application/controller/app_widget_helper_controller.dart';
 import 'package:inventory_crud_application/domain/models/response_model/user_login_model.dart';
 import 'package:inventory_crud_application/views/pages/landing_screen.dart';
 import 'package:inventory_crud_application/views/widgets/app_custom_button.dart';
@@ -22,6 +23,7 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   ValueNotifier<bool> visibility = ValueNotifier(true);
+  ValueNotifier<bool> remember = ValueNotifier(false);
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -89,10 +91,15 @@ class _LogInScreenState extends State<LogInScreen> {
 
                         // Change the checkbox border color here
                         ),
-                    child: Checkbox(
-                      value: false,
-                      onChanged: (bool) {},
-                      checkColor: Colors.white,
+                    child: ValueListenableBuilder(
+                      valueListenable: remember,
+                      builder: (context, value, _) => Checkbox(
+                        value: value,
+                        onChanged: (tap) {
+                          remember.value = tap!;
+                        },
+                        checkColor: Colors.white,
+                      ),
                     )),
                 AppCustomText(
                   text: AppHelperString.rememberMe,
@@ -104,15 +111,18 @@ class _LogInScreenState extends State<LogInScreen> {
               child: Padding(
                 padding: EdgeInsets.only(right: 52.w),
                 child: UnconstrainedBox(
-                    child: AppCustomSizeBox(
-                        width: 140.w,
-                        child: authController.logInIsLoading==false?AppCustomButton(
-                          title: AppHelperString.logIn,
-                          height: 40.h,
-                          onPressed: () {
-                            logInButtonPress(context, authController);
-                          },
-                        ):const Center(child: CircularProgressIndicator(),))),
+                    child: ValueListenableBuilder(
+                      valueListenable: remember,
+                      builder: (context, value, _) =>  AppCustomSizeBox(
+                          width: 140.w,
+                          child: authController.logInIsLoading==false?AppCustomButton(
+                            title: AppHelperString.logIn,
+                            height: 40.h,
+                            onPressed: () {
+                              logInButtonPress(context, authController,value);
+                            },
+                          ):const Center(child: CircularProgressIndicator(),)),
+                    )),
               ),
             ),
           ],
@@ -120,16 +130,19 @@ class _LogInScreenState extends State<LogInScreen> {
       ),
     );
   }
-  logInButtonPress(BuildContext context,AppAuthController authController)async{
+  logInButtonPress(BuildContext context,AppAuthController authController,bool remember)async{
     String userName=userNameController.text;
     String password=passwordController.text;
 
+
     if(userName.isNotEmpty && password.isNotEmpty){
-      UserModel model = UserModel(username: userName, password: password, rememberMe: true);
+      UserModel model = UserModel(username: userName, password: password, rememberMe: remember);
        final logIn=await authController.login(model, context);
        if(logIn==true){
          userNameController.clear();
          passwordController.clear();
+         final appHelperController=Get.find<AppWidgetHelperController>();
+         appHelperController.changeIndex(0);
          Get.toNamed(LandingScreen.routeName);
        }
     }
